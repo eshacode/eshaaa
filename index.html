@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kiss Me Now</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at center, #ff4e50, #f9d423);
+      font-family: 'Playfair Display', serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      color: #fff;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #fff;
+      max-width: 90%;
+      margin: 0 auto 30px;
+      line-height: 1.6;
+      font-weight: 400;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .kiss-emoji {
+      font-size: 4.5rem;
+      cursor: pointer;
+      animation: glow 2s infinite ease-in-out;
+      transition: transform 0.4s ease;
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        text-shadow: 0 0 10px #fff, 0 0 20px #ff3366, 0 0 30px #ff3366;
+        transform: scale(1);
+      }
+      50% {
+        text-shadow: 0 0 15px #fff, 0 0 30px #ff0033, 0 0 40px #ff0033;
+        transform: scale(1.2);
+      }
+    }
+
+    .full-screen-kiss {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      font-size: 20rem;
+      opacity: 0;
+      color: #ff3366;
+      transition: all 1.2s ease-in-out;
+      z-index: 999;
+      text-shadow: 0 0 20px #ff4e50;
+      max-width: 100vw;
+      word-break: break-word;
+    }
+
+    .show-kiss {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    #content {
+      transition: all 0.7s ease;
+      z-index: 10;
+    }
+
+    .dark-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      top: 0;
+      left: 0;
+      z-index: 5;
+      opacity: 0;
+      transition: 1s ease;
+    }
+
+    .overlay-show {
+      opacity: 1;
+    }
+
+    audio {
+      display: none;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      .kiss-emoji {
+        font-size: 3.5rem;
+      }
+
+      .full-screen-kiss {
+        font-size: 12rem;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Music -->
+  <audio autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Dark overlay after click -->
+  <div class="dark-overlay" id="overlay"></div>
+
+  <!-- Main Content -->
+  <div id="content">
+    <h1>Kiss Me Now 😘</h1>
+    <p>
+       <strong>Kashafoooooo </strong> <br>
+        ek pyari sa kiss do 💋 <br>
+        Kiss karne ke liye neeche lips emoji pe click karo...💋
+    </p>
+    <div class="kiss-emoji" onclick="kissEffect()">💋</div>
+  </div>
+
+  <!-- Big Kiss Emoji -->
+  <div class="full-screen-kiss" id="kissBoom">💋</div>
+
+  <script>
+    function kissEffect() {
+      document.getElementById("overlay").classList.add("overlay-show");
+      document.getElementById("content").style.opacity = "0";
+      setTimeout(() => {
+        document.getElementById("content").style.display = "none";
+        document.getElementById("kissBoom").classList.add("show-kiss");
+      }, 700);
+    }
+  </script>
+
+</body>
+</html>
